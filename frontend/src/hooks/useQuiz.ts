@@ -10,8 +10,8 @@ export function useQuiz() {
   const progress = computed(() => Math.round((answers.value.length / mockQuiz.length) * 100));
 
   function answer(option: QuizOption) {
-    if (currentIndex.value < mockQuiz.length - 1) currentIndex.value += 1;
     answers.value[currentIndex.value] = option;
+    if (currentIndex.value < mockQuiz.length - 1) currentIndex.value += 1;
   }
 
   function result() {

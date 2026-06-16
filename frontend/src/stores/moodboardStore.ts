@@ -6,7 +6,7 @@ export const useMoodboardStore = defineStore('moodboards', {
   state: () => ({ boards: [] as MoodBoard[] }),
   actions: {
     async load() {
-      this.boards = await db.moodboards.orderBy('createdAt').toArray();
+      this.boards = await db.moodboards.orderBy('createdAt').reverse().toArray();
       if (!this.boards.length) {
         await this.createBoard('安静木色家', '低饱和木色、自然光和轻收纳', []);
       }
@@ -27,7 +27,7 @@ export const useMoodboardStore = defineStore('moodboards', {
     async addImage(boardId: string, imageId: string) {
       const board = await db.moodboards.get(boardId);
       if (!board || board.imageIds.includes(imageId)) return;
-      await db.moodboards.put({ ...board, imageIds: [imageId] });
+      await db.moodboards.put({ ...board, imageIds: [...board.imageIds, imageId] });
       this.boards = await db.moodboards.orderBy('createdAt').reverse().toArray();
     }
   }

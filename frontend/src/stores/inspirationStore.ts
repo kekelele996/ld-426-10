@@ -7,7 +7,7 @@ export const useInspirationStore = defineStore('inspiration', {
   state: () => ({ images: [] as InspirationImage[], styleFilter: undefined as DecorStyle | undefined, roomFilter: undefined as RoomType | undefined }),
   getters: {
     filteredImages(state) {
-      return state.images.filter((image) => (!state.styleFilter || image.style === state.styleFilter) && (!state.roomFilter || image.roomType === RoomType.LivingRoom));
+      return state.images.filter((image) => (!state.styleFilter || image.style === state.styleFilter) && (!state.roomFilter || image.roomType === state.roomFilter));
     }
   },
   actions: {
