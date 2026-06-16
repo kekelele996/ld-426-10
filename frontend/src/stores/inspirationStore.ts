@@ -16,7 +16,16 @@ export const useInspirationStore = defineStore('inspiration', {
       this.images = await db.images.toArray();
     },
     async collect(image: InspirationImage) {
-      await db.images.put({ ...image, collectedAt: new Date().toISOString() });
+      const plainImage: InspirationImage = {
+        id: image.id,
+        imageUrl: image.imageUrl,
+        style: image.style,
+        roomType: image.roomType,
+        tags: [...image.tags],
+        sourceDescription: image.sourceDescription,
+        collectedAt: new Date().toISOString()
+      };
+      await db.images.put(plainImage);
       this.images = await db.images.toArray();
     }
   }

@@ -34,9 +34,10 @@ const styleValue = computed({ get: () => store.styleFilter, set: (value) => (sto
 const roomValue = computed({ get: () => store.roomFilter, set: (value) => (store.roomFilter = value as RoomType | undefined) });
 
 async function collect(image: InspirationImage) {
+  const imageId = String(image.id);
   await store.collect(image);
   await boards.load();
-  await boards.addImage(boards.boards[0].id, image.id);
+  await boards.addImageToLatestBoard(imageId);
 }
 
 onMounted(async () => {
