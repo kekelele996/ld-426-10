@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Avenir Next", ui-sans-serif, system-ui, sans-serif;
+}
+
+.filter-btn {
+  border: 1px solid color-mix(in srgb, var(--text), transparent 82%);
+  padding: 0.55rem 0.9rem;
+  color: var(--text);
+  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: #b86f52;
+  border-color: #b86f52;
+  color: #f6f1e8;
+}
+
+.page-title {
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(2rem, 4vw, 4.4rem);
+  line-height: 0.98;
+}
